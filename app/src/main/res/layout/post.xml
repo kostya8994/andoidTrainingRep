@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="3dp">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/Avatar_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/authorName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/datePost"
+        app:layout_constraintEnd_toStartOf="@id/options"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        tools:text="Нетология. Университет интернет-профессий" />
+
+    <TextView
+        android:id="@+id/datePost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="@id/authorName"
+        app:layout_constraintStart_toStartOf="@id/authorName"
+        app:layout_constraintTop_toBottomOf="@id/authorName"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="24dp"
+        tools:text="04.05.22" />
+
+    <ImageButton
+        android:id="@+id/options"
+        android:layout_width="16dp"
+        android:layout_height="25dp"
+        android:background="000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/authorName"
+        app:srcCompat="@drawable/ic_option_24dp"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="77dp"
+        android:contentDescription="@string/optionsPost" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/headerBarrier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="avatar, authorName, datePost, options" />
+
+    <TextView
+        android:id="@+id/post"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:ellipsize="end"
+        app:layout_constraintTop_toBottomOf="@id/headerBarrier"
+        app:layout_constraintBottom_toTopOf="@id/licksButton"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="59dp"
+        tools:text="@tools:sample/lorem/random" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/postBarrier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="avatar, authorName, datePost, options, post" />
+
+    <ImageButton
+        android:id="@+id/licksButton"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        app:srcCompat="@drawable/ic_lickes_24dp"
+        app:layout_constraintTop_toBottomOf="@id/postBarrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="137dp" />
+
+    <TextView
+        android:id="@+id/licksQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@id/licksButton"
+        app:layout_constraintTop_toTopOf="@id/licksButton"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp"
+        tools:text="0" />
+
+    <ImageButton
+        android:id="@+id/commentsButton"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/licksQuantity"
+        app:layout_constraintTop_toTopOf="@id/licksQuantity"
+        app:srcCompat="@drawable/ic_comments_24" />
+
+    <TextView
+        android:id="@+id/commentsQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@id/commentsButton"
+        app:layout_constraintTop_toTopOf="@id/commentsButton"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp"
+        tools:text="0" />
+
+    <ImageButton
+        android:id="@+id/viewsButton"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:background="000000"
+        app:layout_constraintEnd_toStartOf="@id/viewsQuantity"
+        app:layout_constraintTop_toTopOf="@id/commentsQuantity"
+        app:srcCompat="@drawable/ic_views_24dp"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="174dp" />
+
+    <TextView
+        android:id="@+id/viewsQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewsButton"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp"
+        tools:text="0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
