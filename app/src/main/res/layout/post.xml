@@ -49,7 +49,7 @@
         android:id="@+id/options"
         android:layout_width="16dp"
         android:layout_height="25dp"
-        android:background="000000"
+        android:background="#000000"
         android:contentDescription="@string/optionsPost"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/authorName"
@@ -96,40 +96,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16dp"
+        android:text="0"
         app:layout_constraintStart_toEndOf="@id/licksButton"
         app:layout_constraintTop_toTopOf="@id/licksButton"
         tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="3dp"
-        tools:text="0" />
+        tools:layout_editor_absoluteY="3dp" />
 
     <ImageButton
-        android:id="@+id/commentsButton"
+        android:id="@+id/shareButton"
         android:layout_width="23dp"
         android:layout_height="23dp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toEndOf="@id/licksQuantity"
         app:layout_constraintTop_toTopOf="@id/licksQuantity"
-        app:srcCompat="@drawable/ic_comments_24"
+        app:srcCompat="@drawable/ic_share_24"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/commentsQuantity"
+        android:id="@+id/shareQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@id/commentsButton"
-        app:layout_constraintTop_toTopOf="@id/commentsButton"
+        app:layout_constraintStart_toEndOf="@id/shareButton"
+        app:layout_constraintTop_toTopOf="@id/shareButton"
+        android:text="0"
         tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="3dp"
-        tools:text="0" />
+        tools:layout_editor_absoluteY="3dp" />
 
     <ImageButton
         android:id="@+id/viewsButton"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:background="000000"
+        android:background="#000000"
         app:layout_constraintEnd_toStartOf="@id/viewsQuantity"
-        app:layout_constraintTop_toTopOf="@id/commentsQuantity"
+        app:layout_constraintTop_toTopOf="@id/shareQuantity"
         app:srcCompat="@drawable/ic_views_24dp"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
