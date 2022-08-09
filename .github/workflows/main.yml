@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [  master, main, theSecondTask, theThirdTask]
+    branches: [  master, main, theSecondTask, theThirdTask, theFifthTask]
   pull_request:
-    branches: [  master, main, theSecondTask, theThirdTask]
+    branches: [  master, main, theSecondTask, theThirdTask, theFifthTask]
 
 jobs:
   build:
