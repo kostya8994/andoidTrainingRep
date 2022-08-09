@@ -64,7 +64,7 @@
         app:constraint_referenced_ids="avatar, authorName, datePost, options" />
 
     <TextView
-        android:id="@+id/post"
+        android:id="@+id/postContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:ellipsize="end"
@@ -79,7 +79,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar, authorName, datePost, options, post" />
+        app:constraint_referenced_ids="avatar, authorName, datePost, options, postContent" />
 
     <ImageButton
         android:id="@+id/licksButton"

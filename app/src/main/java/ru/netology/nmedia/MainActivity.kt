@@ -2,29 +2,40 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.TextView
+import ru.netology.nmedia.data.viewModel.PostViewModel
+import ru.netology.nmedia.databinding.PostBinding
 
 class MainActivity : AppCompatActivity() {
+    private val viewModel = PostViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.post)
 
-        val likeButton = findViewById<ImageButton>(R.id.licksButton)
-        val likeText = findViewById<TextView>(R.id.licksQuantity)
-        val shareButton = findViewById<ImageButton>(R.id.shareButton)
-        val shareText = findViewById<TextView>(R.id.shareQuantity)
-        val post = Post(false, "999", "0")
-        val postLogic = PostLogic(post)
-        likeButton.setOnClickListener{
-            if(!post.likedByMy)likeButton.setImageResource(R.drawable.ic_licksred_24) else likeButton.setImageResource(R.drawable.ic_lickes_24dp)
-            if(!post.likedByMy) postLogic.clickLike() else postLogic.cancelingClickLike()
-            likeText.setText(post.numberLickes)
-            post.likedByMy = !post.likedByMy
+        val binding = PostBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        viewModel.data.observe(this) { post ->
+            binding.render(post)
         }
-        shareButton.setOnClickListener{
-            postLogic.clickShare()
-            shareText.setText(post.numberShare)
+
+        binding.licksButton.setOnClickListener {
+            viewModel.onLikeClick()
         }
+
+        binding.shareButton.setOnClickListener {
+            viewModel.onShareClick()
+        }
+
     }
+
+    private fun PostBinding.render(post: Post) {
+        authorName.text = post.author
+        postContent.text = post.content
+        datePost.text = post.published
+        licksButton?.setImageResource(getLikeIconResId(post.likedByMy))
+        licksQuantity.setText(post.numberLickes)
+        shareQuantity.setText(post.numberShare)
+    }
+
+    private fun getLikeIconResId(liked: Boolean) =
+        if (liked) R.drawable.ic_licksred_24 else R.drawable.ic_lickes_24dp
 }
