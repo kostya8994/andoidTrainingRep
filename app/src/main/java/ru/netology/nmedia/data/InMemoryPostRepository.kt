@@ -4,11 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.Post
 
 class InMemoryPostRepository {
-    private var likes: Int = 0
-    private var share: Int = 0
-
     val data = MutableLiveData(
-        Post(false, "999", "0", "Константин", "Контент", "09.08.2022")
+        Post(false, "0", "0", "Константин", "Контент", "09.08.2022")
     )
 
     fun like() {
@@ -18,8 +15,8 @@ class InMemoryPostRepository {
         var likedPost = currentPost.copy(
             likedByMy = !currentPost.likedByMy
         )
-        if (likedPost.likedByMy) likes++ else likes--
-        likedPost = likedPost.copy(numberLickes = roundingNumbers(likes))
+        if (likedPost.likedByMy) likedPost.likes++ else likedPost.likes--
+        likedPost = likedPost.copy(numberLickes = roundingNumbers(likedPost.likes))
         data.value = likedPost
     }
 
@@ -27,9 +24,9 @@ class InMemoryPostRepository {
         val currentPost = checkNotNull(data.value) {
             "Data value should not be null"
         }
-        share++
+        currentPost.share++
         val sharePost = currentPost.copy(
-            numberShare = roundingNumbers(share)
+            numberShare = roundingNumbers(currentPost.share)
         )
         data.value = sharePost
     }
