@@ -1,12 +1,13 @@
 package ru.netology.nmedia
 
 data class Post(
-    var likedByMy: Boolean = false,
+    var likes: Int = 0,
     var numberLickes: String = "0",
     var numberShare: String = "0",
     val author: String,
-    val content: String,
+    var content: String = "Контент",
+    var likedByMy: Boolean = false,
     val published: String,
-    var likes: Int = 0,
-    var share: Int = 0
+    var share: Int = 0,
+    val id: Int = 0
 )

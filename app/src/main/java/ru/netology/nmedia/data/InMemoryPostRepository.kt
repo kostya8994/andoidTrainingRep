@@ -5,30 +5,54 @@ import ru.netology.nmedia.Post
 
 class InMemoryPostRepository {
     val data = MutableLiveData(
-        Post(false, "0", "0", "Константин", "Контент", "09.08.2022")
+        List(10) { index ->
+            Post(
+                0,
+                "0",
+                "0",
+                "Константин",
+                "Контент $index",
+                false,
+                "09.08.2022",
+                id = index + 1
+            )
+        }
     )
 
-    fun like() {
-        val currentPost = checkNotNull(data.value) {
+    private val posts
+        get() = checkNotNull(data.value) {
             "Data value should not be null"
         }
-        var likedPost = currentPost.copy(
-            likedByMy = !currentPost.likedByMy
-        )
-        if (likedPost.likedByMy) likedPost.likes++ else likedPost.likes--
-        likedPost = likedPost.copy(numberLickes = roundingNumbers(likedPost.likes))
-        data.value = likedPost
+
+    fun like(postId: Int) {
+        data.value = posts.map {
+            if (it.id != postId) it
+            else {
+                if (it.likedByMy) {
+                    it.copy(
+                        likes = it.likes + 1,
+                        numberLickes = roundingNumbers(it.likes + 1),
+                        likedByMy = !it.likedByMy
+                    )
+                } else {
+                    it.copy(
+                        likes = it.likes - 1,
+                        numberLickes = roundingNumbers(it.likes + 1),
+                        likedByMy = !it.likedByMy
+                    )
+                }
+            }
+        }
     }
 
-    fun share() {
-        val currentPost = checkNotNull(data.value) {
-            "Data value should not be null"
+    fun share(postId: Int) {
+        data.value = posts.map {
+            if (it.id != postId) it
+            else {
+                it.copy(share = it.share++)
+                it.copy(numberShare = roundingNumbers(it.share))
+            }
         }
-        currentPost.share++
-        val sharePost = currentPost.copy(
-            numberShare = roundingNumbers(currentPost.share)
-        )
-        data.value = sharePost
     }
 
     fun roundingNumbers(numbers: Int): String {
