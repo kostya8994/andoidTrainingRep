@@ -9,5 +9,5 @@ data class Post(
     var likedByMy: Boolean = false,
     val published: String,
     var share: Int = 0,
-    val id: Int = 0
+    val id: Int = 0,
 )

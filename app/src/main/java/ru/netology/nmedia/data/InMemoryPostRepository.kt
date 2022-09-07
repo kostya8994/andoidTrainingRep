@@ -3,9 +3,12 @@ package ru.netology.nmedia.data
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.Post
 
-class InMemoryPostRepository {
-    val data = MutableLiveData(
-        List(10) { index ->
+class InMemoryPostRepository: PostRepositiry{
+
+    private var nextId = GENERATE_POST_AMOUT
+
+    override val data = MutableLiveData(
+        List(GENERATE_POST_AMOUT) { index ->
             Post(
                 0,
                 "0",
@@ -24,7 +27,7 @@ class InMemoryPostRepository {
             "Data value should not be null"
         }
 
-    fun like(postId: Int) {
+    override fun like(postId: Int) {
         data.value = posts.map {
             if (it.id != postId) it
             else {
@@ -45,7 +48,7 @@ class InMemoryPostRepository {
         }
     }
 
-    fun share(postId: Int) {
+    override fun share(postId: Int) {
         data.value = posts.map {
             if (it.id != postId) it
             else {
@@ -68,5 +71,30 @@ class InMemoryPostRepository {
             val numbersDouble: Double = numbers.toDouble() / 1000000
             return numbersDouble.toString() + "M"
         }
+    }
+
+    override fun delete(postId: Int){
+        data.value = posts.filter{ it.id != postId }
+    }
+
+    override fun save(post: Post){
+        if(post.id == PostRepositiry.NEW_POST_ID) insert(post) else update(post)
+    }
+
+    private fun insert(post: Post) {
+        data.value = listOf(post.copy(
+            id = ++nextId
+        )) + posts
+    }
+
+    private fun update(post: Post) {
+        data.value = posts.map {
+            if(it.id == post.id) post else it
+        }
+    }
+
+
+    companion object {
+        const val GENERATE_POST_AMOUT = 10
     }
 }

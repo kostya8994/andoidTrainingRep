@@ -3,4 +3,7 @@
     <string name="nmedia">NMedia!</string>
     <string name="Avatar_description">Author avatar</string>
     <string name="optionsPost">options</string>
+    <string name="remove">Remove</string>
+    <string name="post_text">Text</string>
+    <string name="edit">Edit</string>
 </resources>

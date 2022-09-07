@@ -4,4 +4,7 @@
     <string name="nmedia">НМедиа!</string>
     <string name="Avatar_description">Аватар автора</string>
     <string name="optionsPost">Опции</string>
+    <string name="remove">Удалить</string>
+    <string name="post_text">Текст</string>
+    <string name="edit">Редактировать</string>
 </resources>

@@ -1,16 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/toolsTopBarrier"
+        android:layout_height="0dp"
         tools:listitem="@layout/post"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
-    </FrameLayout>
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/toolsTopBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="contentEditText"/>
+
+    <EditText
+        android:id="@+id/contentEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/post_text"
+        android:inputType="textMultiLine"
+        android:background="@android:color/transparent"
+        android:importantForAutofill="no"
+        app:layout_constraintTop_toTopOf="@id/toolsTopBarrier"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/saveButton"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/Avatar_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/contentEditText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolsTopBarrier"
+        android:src="@android:drawable/btn_plus"/>
+
+    <ImageButton
+        android:id="@+id/cancelEditButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/Avatar_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/contentEditText"
+        app:layout_constraintBottom_toTopOf="@id/toolsTopBarrier"
+        android:visibility="gone"
+        android:src="@drawable/ic_baseline_clear_24"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
