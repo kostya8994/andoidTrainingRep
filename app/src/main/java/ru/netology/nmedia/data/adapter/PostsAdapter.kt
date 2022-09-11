@@ -41,9 +41,10 @@ internal class PostsAdapter(
                 authorName.text = post.author
                 postContent.text = post.content
                 datePost.text = post.published
-                licksButton?.setImageResource(getLikeIconResId(post.likedByMy))
-                licksQuantity.setText(post.numberLickes)
-                shareQuantity.setText(post.numberShare)
+                licksButton.isChecked = post.likedByMy
+//                licksButton?.setButtonDrawable(getLikeIconResId(post.likedByMy))
+                licksButton.setText(post.numberLickes)
+                shareButton.setText(post.numberShare)
                 licksButton.setOnClickListener { onLikeClick(post) }
                 shareButton.setOnClickListener { onShareClick(post) }
                 options.setOnClickListener { popupMenu.show() }
@@ -70,8 +71,8 @@ internal class PostsAdapter(
             }
         }
 
-        private fun getLikeIconResId(liked: Boolean) =
-            if (liked) R.drawable.ic_licksred_24 else R.drawable.ic_lickes_24dp
+//        private fun getLikeIconResId(liked: Boolean) =
+//            if (liked) R.drawable.ic_licksred_24 else R.drawable.ic_lickes_24dp
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Post>() {

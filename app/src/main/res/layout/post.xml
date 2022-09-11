@@ -45,16 +45,15 @@
         tools:layout_editor_absoluteY="24dp"
         tools:text="04.05.22" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/options"
-        android:layout_width="25dp"
-        android:layout_height="30dp"
-        android:background="#000000"
-        android:contentDescription="@string/optionsPost"
+        style="@style/Widget.AppTheme.ShareButton"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_option_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/authorName"
-        app:srcCompat="@drawable/ic_option_24dp"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/headerBarrier"
@@ -68,10 +67,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        app:layout_constraintTop_toBottomOf="@id/headerBarrier"
         app:layout_constraintBottom_toTopOf="@id/licksButton"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="59dp"
+        app:layout_constraintTop_toBottomOf="@id/headerBarrier"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="28dp"
         tools:text="@tools:sample/lorem/random" />
 
     <androidx.constraintlayout.widget.Barrier
@@ -81,47 +80,29 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="avatar, authorName, datePost, options, postContent" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/licksButton"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppTheme.LiksCheckButton"
+        android:checkable="true"
+        app:icon="@drawable/ic_like24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/postBarrier"
-        app:srcCompat="@drawable/ic_lickes_24dp"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        tools:text="100"
+        />
 
-    <TextView
-        android:id="@+id/licksQuantity"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/shareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:text="0"
+        style="@style/Widget.AppTheme.ShareButton"
+        app:icon="@drawable/ic_share_24"
         app:layout_constraintStart_toEndOf="@id/licksButton"
         app:layout_constraintTop_toTopOf="@id/licksButton"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="3dp" />
-
-    <ImageButton
-        android:id="@+id/shareButton"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/licksQuantity"
-        app:layout_constraintTop_toTopOf="@id/licksQuantity"
-        app:srcCompat="@drawable/ic_share_24"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/shareQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@id/shareButton"
-        app:layout_constraintTop_toTopOf="@id/shareButton"
-        android:text="0"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="3dp" />
+        tools:text="100"
+        />
 
     <ImageButton
         android:id="@+id/viewsButton"
@@ -129,7 +110,7 @@
         android:layout_height="23dp"
         android:background="#000000"
         app:layout_constraintEnd_toStartOf="@id/viewsQuantity"
-        app:layout_constraintTop_toTopOf="@id/shareQuantity"
+        app:layout_constraintTop_toTopOf="@id/shareButton"
         app:srcCompat="@drawable/ic_views_24dp"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
