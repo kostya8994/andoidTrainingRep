@@ -14,12 +14,12 @@
         <!-- Customize your theme here. -->
     </style>
     
-    <style name="Widget.AppTheme.LiksCheckButton" parent="Widget.MaterialComponents.Button.Icon">
+    <style name="Widget.AppTheme.LiksCheckButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="iconTint">@color/like_checkbox_tint</item>
 
     </style>
 
-    <style name="Widget.AppTheme.ShareButton" parent="Widget.MaterialComponents.Button.Icon">
+    <style name="Widget.AppTheme.ShareButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="iconTint">?attr/colorControlNormal</item>
 
     </style>
