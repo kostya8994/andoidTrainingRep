@@ -1,6 +1,7 @@
 package ru.netology.nmedia.data.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -8,7 +9,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.Post
 import ru.netology.nmedia.R
-import ru.netology.nmedia.data.SuportedPost
 import ru.netology.nmedia.databinding.PostBinding
 import kotlin.reflect.KFunction1
 
@@ -17,7 +17,7 @@ internal class PostsAdapter(
     private val onShareClick: KFunction1<Post, Unit>,
     private val onRemoveClick: (Post) -> Unit,
     private val onEditClick: (Post) -> Unit,
-    private val suportedPost: SuportedPost
+    private val onOpenVideoClicked: (Post) -> Unit
 ) : ListAdapter<Post, PostsAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,12 +42,13 @@ internal class PostsAdapter(
                 postContent.text = post.content
                 datePost.text = post.published
                 licksButton.isChecked = post.likedByMy
-//                licksButton?.setButtonDrawable(getLikeIconResId(post.likedByMy))
                 licksButton.setText(post.numberLickes)
                 shareButton.setText(post.numberShare)
                 licksButton.setOnClickListener { onLikeClick(post) }
                 shareButton.setOnClickListener { onShareClick(post) }
                 options.setOnClickListener { popupMenu.show() }
+                if (post.video != null) preview.setVisibility(View.VISIBLE)
+                preview.setOnClickListener { onOpenVideoClicked(post) }
             }
         }
 
@@ -62,7 +63,6 @@ internal class PostsAdapter(
                         }
                         R.id.edit -> {
                             onEditClick(post)
-                            suportedPost.visiblyCancelButton()
                             true
                         }
                         else -> false
@@ -70,9 +70,6 @@ internal class PostsAdapter(
                 }
             }
         }
-
-//        private fun getLikeIconResId(liked: Boolean) =
-//            if (liked) R.drawable.ic_licksred_24 else R.drawable.ic_lickes_24dp
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Post>() {

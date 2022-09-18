@@ -67,11 +67,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        app:layout_constraintBottom_toTopOf="@id/licksButton"
+        app:layout_constraintBottom_toTopOf="@id/preview"
         app:layout_constraintTop_toBottomOf="@id/headerBarrier"
         app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="28dp"
         tools:text="@tools:sample/lorem/random" />
+
+    <ImageButton
+        android:id="@+id/preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/postContent"
+        app:layout_constraintBottom_toTopOf="@id/postBarrier"
+        app:srcCompat="@drawable/ic_play_video"
+        android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/postBarrier"

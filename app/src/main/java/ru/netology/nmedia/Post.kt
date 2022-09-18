@@ -10,4 +10,5 @@ data class Post(
     val published: String,
     var share: Int = 0,
     val id: Int = 0,
+    val video: String? = null
 )

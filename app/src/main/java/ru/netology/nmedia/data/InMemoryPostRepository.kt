@@ -3,7 +3,7 @@ package ru.netology.nmedia.data
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.Post
 
-class InMemoryPostRepository: PostRepositiry{
+class InMemoryPostRepository : PostRepositiry {
 
     private var nextId = GENERATE_POST_AMOUT
 
@@ -17,7 +17,8 @@ class InMemoryPostRepository: PostRepositiry{
                 "Контент $index",
                 false,
                 "09.08.2022",
-                id = index + 1
+                id = index + 1,
+                video = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
             )
         }
     )
@@ -73,23 +74,25 @@ class InMemoryPostRepository: PostRepositiry{
         }
     }
 
-    override fun delete(postId: Int){
-        data.value = posts.filter{ it.id != postId }
+    override fun delete(postId: Int) {
+        data.value = posts.filter { it.id != postId }
     }
 
-    override fun save(post: Post){
-        if(post.id == PostRepositiry.NEW_POST_ID) insert(post) else update(post)
+    override fun save(post: Post) {
+        if (post.id == PostRepositiry.NEW_POST_ID) insert(post) else update(post)
     }
 
     private fun insert(post: Post) {
-        data.value = listOf(post.copy(
-            id = ++nextId
-        )) + posts
+        data.value = listOf(
+            post.copy(
+                id = ++nextId
+            )
+        ) + posts
     }
 
     private fun update(post: Post) {
         data.value = posts.map {
-            if(it.id == post.id) post else it
+            if (it.id == post.id) post else it
         }
     }
 

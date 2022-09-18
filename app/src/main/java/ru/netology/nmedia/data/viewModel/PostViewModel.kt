@@ -1,6 +1,5 @@
 package ru.netology.nmedia.data.viewModel
 
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.Post
@@ -34,5 +33,9 @@ class PostViewModel() : ViewModel() {
         )
         repository.save(newPost)
         currentPost.value = null
+    }
+
+    fun onOpenVideoClicked(post: Post) {
+        currentPost.value = post
     }
 }
