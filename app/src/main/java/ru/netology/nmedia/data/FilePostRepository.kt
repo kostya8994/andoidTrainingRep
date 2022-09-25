@@ -15,18 +15,18 @@ class FilePostRepository(private val application: Application) : PostRepositiry 
     private val prefs = application.getSharedPreferences("repo", Context.MODE_PRIVATE)
     private var nextId: Int by Delegates.observable(
         prefs.getInt(NEXT_TO_PRESS_KEY_ID, 0)
-    ){_,_, newValue ->
-        prefs.edit {putInt(NEXT_TO_PRESS_KEY_ID, newValue)}
+    ) { _, _, newValue ->
+        prefs.edit { putInt(NEXT_TO_PRESS_KEY_ID, newValue) }
     }
 
     override val data: MutableLiveData<List<Post>>
 
     init {
         val postsFile = application.filesDir.resolve(FILE_NAME)
-        val posts: List<Post> = if(postsFile.exists()){
+        val posts: List<Post> = if (postsFile.exists()) {
             val inputStream = application.openFileInput(FILE_NAME)
             val reader = inputStream.bufferedReader()
-            reader.use{ gson.fromJson(it, type) }
+            reader.use { gson.fromJson(it, type) }
         } else emptyList()
         data = MutableLiveData(posts)
     }
@@ -35,7 +35,7 @@ class FilePostRepository(private val application: Application) : PostRepositiry 
         get() = checkNotNull(data.value) {
             "Data value should not be null"
         }
-        set(value){
+        set(value) {
             application.openFileOutput(FILE_NAME, Context.MODE_PRIVATE).bufferedWriter().use {
                 it.write(gson.toJson(value))
             }
