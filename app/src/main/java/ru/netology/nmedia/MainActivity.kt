@@ -44,7 +44,10 @@ class MainActivity : AppCompatActivity() {
             if (content != null) {
                 activityLauncher.launch(content.toString())
             }
-            val videoUrl: String? = currentPost?.video
+
+        }
+        viewModel.currentPostVideo.observe(this) { currentPostVideo ->
+            val videoUrl: String? = currentPostVideo?.video
             if (intent.resolveActivity(packageManager) != null) {
                 if (videoUrl != null) {
                     intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl.toString()))

@@ -10,6 +10,7 @@ class PostViewModel() : ViewModel() {
     private val repository = InMemoryPostRepository()
 
     val currentPost = MutableLiveData<Post?>(null)
+    val currentPostVideo = MutableLiveData<Post?>(null)
 
     val data by repository::data
 
@@ -36,6 +37,6 @@ class PostViewModel() : ViewModel() {
     }
 
     fun onOpenVideoClicked(post: Post) {
-        currentPost.value = post
+        currentPostVideo.value = post
     }
 }
