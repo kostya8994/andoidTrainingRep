@@ -1,13 +1,14 @@
 package ru.netology.nmedia.data.viewModel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.Post
-import ru.netology.nmedia.data.InMemoryPostRepository
+import ru.netology.nmedia.data.FilePostRepository
 import ru.netology.nmedia.data.PostRepositiry
 
-class PostViewModel() : ViewModel() {
-    private val repository = InMemoryPostRepository()
+class PostViewModel(application: Application): AndroidViewModel(application) {
+    private val repository = FilePostRepository(application)
 
     val currentPost = MutableLiveData<Post?>(null)
 
