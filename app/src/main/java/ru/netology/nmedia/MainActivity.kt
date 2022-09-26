@@ -9,11 +9,12 @@ import ru.netology.nmedia.data.viewModel.PostViewModel
 import ru.netology.nmedia.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel = PostViewModel(application)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val viewModel = PostViewModel(application)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
